@@ -54,4 +54,56 @@ const otherFoods = [
     }
 ]
 
-// write your code here
+// Deliverables #1 solution
+
+
+
+write your code here
+const restaurantMenu = document.getElementById("restaurant-menu");
+restaurantMenu.textContent = "Hello Flatiron";
+
+const detailImage = document.querySelector(".detail-image");
+detailImage.id = "displayed-image";
+// console.log(detailImage);
+
+const divElements = document.querySelectorAll("div");
+console.log(divElements);
+
+// divElements.forEach(divElement => {
+//     console.log(divElement);
+// })
+
+for(const divElement of divElements) {
+    console.log(divElement.textContent = "good morning!")
+}
+
+const h1Element = document.createElement('h1');
+h1Element.textContent = "Flatburgers are the best!";
+h1Element.className = "flatburger";
+// document.body.appendChild(h1Element);
+// console.log(h1Element);
+
+restaurantMenu.appendChild(h1Element);
+
+const descriptinDisplay = document.getElementById('description-display');
+descriptinDisplay.remove();
+console.log("des disp", descriptinDisplay);
+
+const flatburgerH3Element = document.querySelector('header h3');
+console.log(flatburgerH3Element);
+flatburgerH3Element.append(descriptinDisplay);
+
+const h2Element = document.createElement('h2');
+h2Element.textContent = "I love Flatburgers";
+h2Element.className = "flatburger";
+restaurantMenu.appendChild(h2Element);
+
+const flatburgerTextElements = document.getElementsByClassName("flatburger");
+console.log(flatburgerTextElements);
+
+for (const element of flatburgerTextElements) {
+    element.style = 'color: red';
+
+}
+
+
