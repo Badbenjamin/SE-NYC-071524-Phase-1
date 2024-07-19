@@ -51,19 +51,93 @@ const foods = [
     }
 ]
 
-const restaurantMenu = document.getElementById('restaurant-menu')
+function displayFoodDetails (food) {
 
-foods.forEach(food => {
+    const foodDetailImage = document.querySelector('.detail-image')
+    foodDetailImage.src = food.image
+    
+    const foodName = document.querySelector('.name') 
+    foodName.textContent = food.name
+    
+    const foodDescriptionDisplay = document.querySelector('#description-display')
+    foodDescriptionDisplay.textContent = food.description
+}
+
+function addFoodImagetoMenu(food) {
     const foodImage = document.createElement('img')
     foodImage.src = food.image
+    const restaurantMenu = document.getElementById('restaurant-menu')
     restaurantMenu.appendChild(foodImage)
-})
 
-const foodDetailImage = document.querySelector('.detail-image')
-foodDetailImage.src = foods[0].image
+    
 
-const foodName = document.querySelector('.name') 
-foodName.textContent = foods[0].name
+    // deliverable #1 solution
+    foodImage.addEventListener("click", (e) => {
+        displayFoodDetails(food);
+    })
+}
 
-const foodDescriptionDisplay = document.querySelector('#description-display')
-foodDescriptionDisplay.textContent = foods[0].description
+// DOM CONTENT LOADED
+
+document.addEventListener("DOMContentLoaded", () => {
+        
+
+    foods.forEach(addFoodImagetoMenu)
+
+
+    // display food details when page loads
+    displayFoodDetails(foods[0]);
+
+
+
+    // #2 Submit Event Listener
+    const newFoodForm = document.getElementById('new-food');
+    newFoodForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const newNameInput = document.getElementById('new-name');
+        const newImageInputElement = document.getElementById('new-image')
+        const newDescription = document.getElementById('new-description')
+        
+
+        const newFood = {
+            name: newNameInput.value,
+            image: newImageInputElement.value,
+            description: newDescription.value
+        }
+        addFoodImagetoMenu(newFood);
+        newFoodForm.reset();
+    })
+
+
+    })
+
+    const restaurantMenu = document.getElementById('restaurant-menu')
+
+    foods.forEach(addFoodImagetoMenu)
+
+
+    // display food details when page loads
+    displayFoodDetails(foods[0]);
+
+
+
+    // #2 Submit Event Listener
+    const newFoodForm = document.getElementById('new-food');
+    newFoodForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const newNameInput = document.getElementById('new-name');
+        const newImageInputElement = document.getElementById('new-image')
+        const newDescription = document.getElementById('new-description')
+        
+
+        const newFood = {
+            name: newNameInput.value,
+            image: newImageInputElement.value,
+            description: newDescription.value
+        }
+        addFoodImagetoMenu(newFood);
+        newFoodForm.reset();
+    })
+
