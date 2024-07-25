@@ -1,13 +1,21 @@
+// GLOBAL VARIABLES
 const restaurantMenu = document.getElementById('restaurant-menu')
 
 // use let because the value will change
 let currentlyDisplayedFoodId;
 
+// Items in Cart variable, use let because the variable will not have an initial value at start 
+let foodsArray;
+
 fetch('http://localhost:3000/foods')
 .then(response => response.json())
 .then(foods => {
+    // grab first food of foods and send to displayFoodDetails to update detail image
     displayFoodDetails(foods[0])
-    // console.log(foods)
+    
+    foodsArray = foods;
+    // console.log(foodsArray)
+
     foods.forEach(food => {
         addFoodImageToRestaurantMenu(food)
         
@@ -38,7 +46,15 @@ function addFoodImageToRestaurantMenu(food){
         })
         .then(response => {
             if(response.ok) {
-                imgElement.remove()
+                // update array
+                foodsArray = foodsArray.filter(f => {
+                    // we only want the array to include food that exits
+                    return food.id !== f.id
+                })
+
+                console.log(foodsArray)
+                // imgElement.remove()
+                renderRestarauntMenuImages()
             } else {
                 alert(`ERROR: unable to delete food ${food.id}`)
             }
@@ -60,6 +76,18 @@ function displayFoodDetails(food){
     foodDescriptionDisplayElement.textContent = food.description
     const numberInCartCountElement = document.getElementById('number-in-cart-count')
     numberInCartCountElement.textContent = food.number_in_cart
+}
+
+// rerender menu. modular and can be applied to patch and delete 
+function renderRestarauntMenuImages() {
+    // Clear menu after post is successful
+        restaurantMenu.innerHTML = ""
+    foodsArray.forEach(food => {
+        
+
+        addFoodImageToRestaurantMenu(food)
+        
+    })
 }
 
 const newFoodForm = document.getElementById('new-food')
@@ -89,13 +117,30 @@ newFoodForm.addEventListener('submit', (event) => {
         // check for good response
         if(response.ok){
             response.json().then(newFoodData => {
-                addFoodImageToRestaurantMenu(newFoodData)
+                // push new food object to foodsArray
+                foodsArray.push(newFoodData)
+                
+                // addFoodImageToRestaurantMenu(newFoodData)
+
+                renderRestarauntMenuImages()
+
+                
+
+                // re render menu from updated foodsArray 
+                // foodsArray.forEach(food => {
+                //     addFoodImageToRestaurantMenu(food)
+                    
+                // })
+
+
             })
         }
         else{
             alert("Error: Unable to add new food!")
         }
     })
+
+    // console.log(foodsArray)
 
     newFoodForm.reset()
 })
@@ -132,7 +177,24 @@ addToCartForm.addEventListener('submit', (event) => {
     })
     .then(response =>{ 
         if (response.ok) {
-        response.json().then(updatedFood => numberInCartCountElement.textContent = updatedFood.number_in_cart);
+        response.json().then(updatedFood => {
+            numberInCartCountElement.textContent = updatedFood.number_in_cart
+
+            // update array
+            foodsArray = foodsArray.map(food => {
+                // if food array id matches updated food id, then return updated food
+                if (food.id === updatedFood.id) {
+                    return updatedFood
+                } else {
+                    return food
+                }
+                
+                
+            })
+            // invoke resetRestarauntMenuImages to add new menu with updated count
+            renderRestarauntMenuImages()
+            console.log(foodsArray)
+        });
         } else {
             alert(`Error: unable to update ${currentlyDisplayedFoodId}`)
         }

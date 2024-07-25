@@ -1,27 +1,6 @@
 {
   "foods": [
     {
-      "id": "1",
-      "name": "Flatburger",
-      "image": "./assets/food/flatburger.jpeg",
-      "description": "Our signature Flatburger which is a super delicious cheeseburger that'll leave you wanting another Flatburger! It's too good to be true!",
-      "number_in_cart": 0
-    },
-    {
-      "id": "2",
-      "name": "Maple Bacon Burger",
-      "image": "./assets/food/maple-bacon-burger.jpeg",
-      "description": "A great option for a breakfast burger or a great option for brunch if you're hungry enough to eat 2 of these burgers!",
-      "number_in_cart": 0
-    },
-    {
-      "id": "3",
-      "name": "Mushroom Burger",
-      "image": "./assets/food/mushroom-burger.webp",
-      "description": "A mushroom burger with our exclusive Flatburger melted cheese!",
-      "number_in_cart": 0
-    },
-    {
       "id": "4",
       "name": "Avocado Bun Burger",
       "image": "./assets/food/avocado-bun-burger.jpeg",
@@ -47,7 +26,7 @@
       "name": "Burrito",
       "image": "./assets/food/burrito.webp",
       "description": "A Flatburger style burrito with our exclusive Flatburger melted cheese and any meat of your choosing in addition to your choice of additional ingredients!",
-      "number_in_cart": 0
+      "number_in_cart": 2
     },
     {
       "id": "8",
@@ -68,6 +47,13 @@
       "name": "Onion Rings",
       "image": "./assets/food/onion-rings.jpeg",
       "description": "The Flatburger exclusive Onion Rings! Get them while supplies last!",
+      "number_in_cart": 0
+    },
+    {
+      "id": "6682",
+      "name": "ice cream",
+      "image": "https://handletheheat.com/wp-content/uploads/2021/06/homemade-vanilla-ice-cream.jpg",
+      "description": "yummm",
       "number_in_cart": 0
     }
   ]
