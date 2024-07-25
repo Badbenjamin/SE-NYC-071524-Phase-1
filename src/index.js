@@ -4,7 +4,7 @@ fetch('http://localhost:3000/foods')
 .then(response => response.json())
 .then(foods => {
     displayFoodDetails(foods[0])
-
+   
     foods.forEach(food => {
         addFoodImageToRestaurantMenu(food)
     })
@@ -41,10 +41,52 @@ newFoodForm.addEventListener('submit', (event) => {
         image: newImageInputElement.value,
         description: newDescriptionInputElement.value
     }
+    // Optimistic Rendering Approach, render first, then make post request
+    // addFoodImageToRestaurantMenu(newFood)
 
-    addFoodImageToRestaurantMenu(newFood)
+    // Optimistic
+    // fetch("http://localhost:3000/foods", {
+    //     method: 'POST',
+    //     headers: {
+    //         "Content-Type": "application.json"
+    //     },
+    //     body: JSON.stringify(newFood)
+    // }) 
+    // .then(response => response.json())
+    // .then(newFood => console.log(newFood))
 
-    // write your code here
+    // Pessimistic
+    // fetch("http://localhost:3000/foods", {
+    //     method: 'POST',
+    //     headers: {
+    //         "Content-Type": "application.json"
+    //     },
+    //     body: JSON.stringify(newFood)
+    // }) 
+    // .then(response => response.json())
+    // .then(newFood => addFoodImageToRestaurantMenu(newFood))
+    // .catch(error => console.log(error))
+
+    // error handling
+    fetch("http://localhost:3000/foods", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application.json"
+        },
+        body: JSON.stringify(newFood)
+    }) 
+    .then(response => {
+        if (response.ok) {
+            response.json().then(newFood => addFoodImageToRestaurantMenu(newFood))
+        } else {
+            alert(`Error: ${response.status}: ${response.statusText}`)
+        } 
+    })
+    
+    
+    
+
+    
 
     newFoodForm.reset()
 })
