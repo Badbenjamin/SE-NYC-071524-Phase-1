@@ -36,25 +36,11 @@
       "number_in_cart": 0
     },
     {
-      "id": "9",
-      "name": "Hot Dog",
-      "image": "./assets/food/hot-dog.jpeg",
-      "description": "The Flatburger exclusive Hot Dog! Get it while supplies last!",
-      "number_in_cart": 0
-    },
-    {
       "id": "10",
       "name": "Onion Rings",
       "image": "./assets/food/onion-rings.jpeg",
       "description": "The Flatburger exclusive Onion Rings! Get them while supplies last!",
-      "number_in_cart": 0
-    },
-    {
-      "id": "6682",
-      "name": "ice cream",
-      "image": "https://handletheheat.com/wp-content/uploads/2021/06/homemade-vanilla-ice-cream.jpg",
-      "description": "yummm",
-      "number_in_cart": 0
+      "number_in_cart": 2
     }
   ]
 }
